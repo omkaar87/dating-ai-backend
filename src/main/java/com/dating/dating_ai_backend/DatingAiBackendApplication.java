@@ -49,7 +49,7 @@ public class DatingAiBackendApplication implements CommandLineRunner {
 
 		profileRepo.save(profile);
 
-		profile = new Profile(
+		Profile profile2 = new Profile(
 				"2",
 				"Foo",
 				"Bar",
@@ -60,6 +60,8 @@ public class DatingAiBackendApplication implements CommandLineRunner {
 				"foo.jpg",
 				"INTP"
 		);
+
+		profileRepo.save(profile2);
 
 		profileRepo.findAll().forEach(System.out::println);
 
