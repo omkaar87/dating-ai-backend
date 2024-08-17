@@ -2,10 +2,7 @@ package com.dating.dating_ai_backend.conversations;
 
 import com.dating.dating_ai_backend.profiles.ProfileRepo;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -37,6 +34,12 @@ public class ConversationController {
 
         conversationRepo.save(conversation);
         return conversation;
+    }
+
+    @GetMapping("/conversations/{conversationId}")
+    public Conversation getConversation(@PathVariable String conversationId) {
+        return conversationRepo.findById(conversationId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find conversation id " + conversationId));
     }
 
     @PostMapping("/conversations/{conversationId}")
