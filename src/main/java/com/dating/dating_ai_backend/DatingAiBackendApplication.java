@@ -30,6 +30,10 @@ public class DatingAiBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		profileRepo.deleteAll();
+		conversationRepo.deleteAll();
+
 		Profile profile = new Profile(
 				"1",
 				"Omkar",
@@ -41,7 +45,22 @@ public class DatingAiBackendApplication implements CommandLineRunner {
 				"foo.jpg",
 				"INTP"
 		);
+
+
 		profileRepo.save(profile);
+
+		profile = new Profile(
+				"2",
+				"Foo",
+				"Bar",
+				30,
+				"Indian",
+				Gender.FEMALE,
+				"Software programmer",
+				"foo.jpg",
+				"INTP"
+		);
+
 		profileRepo.findAll().forEach(System.out::println);
 
 		Conversation conversation = new Conversation(
