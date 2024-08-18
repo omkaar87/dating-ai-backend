@@ -45,10 +45,10 @@ public class ProfileCreationService {
     @Value("${startup-actions.initializeProfiles}")
     private Boolean initializeProfiles;
 
-    @Value("${tinderai.lookingForGender}")
+    @Value("${datingai.lookingForGender}")
     private String lookingForGender;
 
-    @Value("#{${tinderai.character.user}}")
+    @Value("#{${datingai.character.user}}")
     private Map<String, String> userProfileProperties;
 
     private ProfileRepo profileRepository;
@@ -168,7 +168,7 @@ public class ProfileCreationService {
         Gson gson = new Gson();
         ImageResponse imageResponse = gson.fromJson(response.body(), ImageResponse.class);
         if (imageResponse.images() != null && !imageResponse.images().isEmpty()) {
-            String base64Image = imageResponse.images().getFirst();
+            String base64Image = imageResponse.images().get(0);
 
             // Decode Base64 to binary
             byte[] imageBytes = Base64.getDecoder().decode(base64Image);

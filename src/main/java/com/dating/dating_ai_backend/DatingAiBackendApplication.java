@@ -19,6 +19,7 @@ public class DatingAiBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		profileCreationService.createProfiles(0);
 		profileCreationService.saveProfilesToDB();
 	}
 }
